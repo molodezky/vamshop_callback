@@ -10,7 +10,9 @@
 - /call_back.php
 
 2. Открываем includes/filenames.php, добавляем внизу до ?>:
+```php
 define('FILENAME_CALL_BACK', 'call_back.php');
+```
 
 3. Добавляем в lang/russian/template_lang_russian.conf секцию:
 ```php
