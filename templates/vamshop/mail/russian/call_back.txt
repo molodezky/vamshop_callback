@@ -1,0 +1,7 @@
+Перезвоните мне!
+
+Имя: {$TEXT_FIRSTNAME}
+Телефон: {$TEXT_PHONE}
+{if $TEXT_MESSAGE}
+Вопрос: {$TEXT_MESSAGE}
+{/if}
