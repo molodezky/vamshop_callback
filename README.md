@@ -13,6 +13,7 @@
 define('FILENAME_CALL_BACK', 'call_back.php');
 
 3. Добавляем в lang/russian/template_lang_russian.conf секцию:
+```php
 [call_back]
 title_question = 'Запросить обратный звонок'
 heading_title = 'Обратный звонок'
@@ -21,12 +22,15 @@ text_phone = 'Ваш Телефон:'
 text_message = 'Ваш вопрос:'
 text_success = 'Сообщение было успешно отправлено.'
 text_success_head = 'Спасибо большое!'
+```
 
 4. В lang/russian/russian.php добавляем:
+```php
 // обратный звонок 
 define('NAVBAR_TITLE_CALL_BACK','Обратный звонок');
 define('TEXT_EMAIL_SUCCESSFUL_SENT_CALL','Ваш запрос успешно отправлен, мы перезвоним Вам в самое ближайшее время.');
 define('TEXT_MESSAGE_ERROR_CALL','Вы не заполнили поле телефон.');
+```
 
 5. В нужном месте шаблона добавляем вызов окна:
 ```html
