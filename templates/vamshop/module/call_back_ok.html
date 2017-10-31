@@ -1,10 +1,17 @@
 {config_load file="$language/template_lang_$language.conf" section="call_back"}
+{literal}
+<style type="text/css">body {background:#fff;}</style>
+{/literal}
+
 <div id="content">
-<div class="page">
-<div class="pagecontent">
-<p><span class="bold">{#text_success_head#}</span></p>
-<p>{#text_success#}</p>
-<p>{$TEXT_EMAIL_SUCCESSFUL}</p>
+
+<h1 class="popup-title">
+<a href="#" onclick="parent.jQuery.colorbox.close()" class="popup-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+Заказать звонок
+</h1>
+
+<div class="popup-content callback-content">
+<div class="popup-success">{$TEXT_EMAIL_SUCCESSFUL}</div>
 </div>
-</div>
+
 </div>
