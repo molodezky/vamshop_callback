@@ -54,3 +54,84 @@ background: -webkit-linear-gradient(top,#fff 0%,#e9e9e9 100%);background: linear
 .popup-footer {padding: 10px 10px 0;font-size: 16px;overflow: hidden;text-align: center;}
 .popup-success {text-align: center;padding-top: 30px;}
 ```
+7. В includes/header.php меняем:
+```php
+<?php
+if (strstr($PHP_SELF, FILENAME_PRODUCT_INFO)) {
+?>
+<link rel="stylesheet" type="text/css" href="jscript/jquery/plugins/colorbox/colorbox.css" media="screen" />
+<script type="text/javascript" src="jscript/jquery/plugins/colorbox/jquery.colorbox-min.js"></script>
+<?php
+if (file_exists(DIR_FS_CATALOG.'jscript/jquery/plugins/colorbox/i18n/jquery.colorbox-'.$_SESSION['language_code'].'.js')) {
+?>
+<script type="text/javascript" src="jscript/jquery/plugins/colorbox/i18n/jquery.colorbox-ru.js"></script>
+<?php } ?>
+<script type="text/javascript">
+// Make ColorBox responsive
+	jQuery.colorbox.settings.maxWidth  = '95%';
+	jQuery.colorbox.settings.maxHeight = '95%';
+
+	// ColorBox resize function
+	var resizeTimer;
+	function resizeColorBox()
+	{
+		if (resizeTimer) clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
+				if (jQuery('#cboxOverlay').is(':visible')) {
+						jQuery.colorbox.load(true);
+				}
+		}, 300);
+	}
+
+	// Resize ColorBox when resizing window or changing mobile device orientation
+	jQuery(window).resize(resizeColorBox);
+	
+$(document).ready(function(){
+  $(".lightbox").colorbox({rel:"lightbox", title: false});
+  $(".iframe").colorbox({iframe:true, width:"30%", height:"80%"});
+});
+</script>
+<?php
+ }
+?>
+```
+на:
+```php
+<link rel="stylesheet" type="text/css" href="jscript/jquery/plugins/colorbox/colorbox.css" media="screen" />
+<script type="text/javascript" src="jscript/jquery/plugins/colorbox/jquery.colorbox-min.js"></script>
+<?php
+if (file_exists(DIR_FS_CATALOG.'jscript/jquery/plugins/colorbox/i18n/jquery.colorbox-'.$_SESSION['language_code'].'.js')) {
+?>
+<script type="text/javascript" src="jscript/jquery/plugins/colorbox/i18n/jquery.colorbox-ru.js"></script>
+<?php } ?>
+<script type="text/javascript">
+// Make ColorBox responsive
+	jQuery.colorbox.settings.maxWidth  = '95%';
+	jQuery.colorbox.settings.maxHeight = '95%';
+
+	// ColorBox resize function
+	var resizeTimer;
+	function resizeColorBox()
+	{
+		if (resizeTimer) clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
+				if (jQuery('#cboxOverlay').is(':visible')) {
+						jQuery.colorbox.load(true);
+				}
+		}, 300);
+	}
+
+	// Resize ColorBox when resizing window or changing mobile device orientation
+	jQuery(window).resize(resizeColorBox);
+  
+$(document).ready(function(){
+  $(".lightbox").colorbox({rel:"lightbox"});
+  $(".iframe").colorbox({iframe:true, width:"30%", height:"80%"});
+  $(".callback").colorbox({iframe:true, width:"95%", maxWidth:"500px", height:"60%", maxHeight:"425px", height:"60%",
+  onLoad: function() {
+    $('#cboxClose').remove();
+	}
+	});
+});
+</script>
+```
