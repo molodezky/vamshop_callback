@@ -76,6 +76,7 @@ $vamTemplate->assign('error', $messageStack->output('call_back'));
 		$vamTemplate->assign('TEXT_MESSAGE', $_POST['message_body']);
 		$vamTemplate->assign('TEXT_FIRSTNAME', $firstname);
 		$vamTemplate->assign('TEXT_PHONE', $_POST['phone']);
+		$vamTemplate->assign('TEXT_EMAIL_SUCCESSFUL', sprintf(TEXT_EMAIL_SUCCESSFUL_SENT_CALL));
 		$vamTemplate->caching = 0;
 		$html_mail = $vamTemplate->fetch(CURRENT_TEMPLATE.'/mail/'.$_SESSION['language'].'/call_back.html');
 		$vamTemplate->caching = 0;
@@ -103,8 +104,8 @@ $vamTemplate->assign('INPUT_FIRSTNAME', $_SESSION['customer_first_name']);
         }else{
 		//-> guest *********************************************************  
 $vamTemplate->assign('INPUT_FIRSTNAME', vam_draw_input_fieldNote(array ('name' => 'firstname', 'text' => '&nbsp;'. (vam_not_null(ENTRY_FIRST_NAME_TEXT) ? '<span class="inputRequirement">'.ENTRY_FIRST_NAME_TEXT.'</span>' : ''))));
-$vamTemplate->assign('INPUT_PHONE', vam_draw_input_fieldNote(array ('name' => 'phone', 'text' => '&nbsp;'. (vam_not_null(ENTRY_TELEPHONE_NUMBER_TEXT) ? '<span class="inputRequirement">'.ENTRY_TELEPHONE_NUMBER_TEXT.'</span>' : ''))));
         }
+$vamTemplate->assign('INPUT_PHONE', vam_draw_input_fieldNote(array ('name' => 'phone', 'text' => '&nbsp;'. (vam_not_null(ENTRY_TELEPHONE_NUMBER_TEXT) ? '<span class="inputRequirement">'.ENTRY_TELEPHONE_NUMBER_TEXT.'</span>' : ''))));
 $vamTemplate->assign('INPUT_TEXT', vam_draw_textarea_field('message_body', 'soft', 30, 3, stripslashes($_POST['message_body'])));
 $vamTemplate->assign('FORM_END', '</form>');
 $vamTemplate->assign('BUTTON_SUBMIT', vam_image_submit('submit.png',  'Перезвоните мне'));
