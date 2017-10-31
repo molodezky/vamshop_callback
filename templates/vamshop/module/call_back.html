@@ -1,6 +1,7 @@
 {config_load file="$language/template_lang_$language.conf" section="call_back"}
-<script type="text/javascript">
 {literal}
+<style type="text/css">body {background:#fff;}</style>
+<script type="text/javascript">
 $(function($){
 
     $('.form-anti-bot, .form-anti-bot-2').hide(); // hide inputs from users
@@ -14,25 +15,25 @@ $(function($){
     }
 
 });
-{/literal}
 </script>
+{/literal}
 
 {$FORM_ACTION}
 
 <div id="content">
-
-{if $error!=''}
-<div class="contacterror">
-{$error}
-</div>
-{/if}
-<h1>{#heading_title#}</h1>
+<h1 class="popup-title">
+<a href="#" onclick="parent.jQuery.colorbox.close()" class="popup-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+{#heading_title#}
+</h1>
+<div class="popup-content callback-content">
 <!-- форма -->
 <fieldset class="form">
-<p>{#text_firstname#} {$INPUT_FIRSTNAME}</p>
-<p>{#text_phone#} {$INPUT_PHONE}</p>
-<p>{#text_message#} {$INPUT_TEXT}</p>
+{if $error!=''}<div class="contacterror">{$error}</div>{/if}
+<div class="popup-input-wrap"><label>{#text_firstname#}</label> {$INPUT_FIRSTNAME}</div>
+<div class="popup-input-wrap"><label>{#text_phone#}</label> {$INPUT_PHONE}</div>
+<div class="popup-input-wrap"><label>{#text_message#}</label> {$INPUT_TEXT}</div>
 </fieldset>
+</div>
 <div class="form-anti-bot" style="clear:both;">
 <strong>Current <span style="display:none;">month</span> <span style="display:inline;">ye@r</span> <span style="display:none;">day</span></strong> <span class="required">*</span>
 <input type="hidden" name="anti-bot-a" id="anti-bot-a" value="{$smarty.now|date_format:"%Y"}" />
@@ -44,10 +45,6 @@ $(function($){
 </div>
 <!-- /форма -->
 
-
-<div class="pagecontentfooter">
-{$BUTTON_SUBMIT}
+<div class="popup-footer">{$BUTTON_SUBMIT}</div>
 </div>
 {$FORM_END}
-
-</div>
